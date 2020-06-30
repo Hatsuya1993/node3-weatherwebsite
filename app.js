@@ -11,7 +11,7 @@ const hbs = require("hbs");
 app.set("view engine", "hbs");
 app.set("views", viewsPath);
 hbs.registerPartials(partialsPath);
-app.use(express.static("public"));
+app.use(express.static(path.join("public")));
 
 console.log(path.join(__dirname, "templates/views"))
 
