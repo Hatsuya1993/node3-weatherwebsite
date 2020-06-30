@@ -34,10 +34,6 @@ app.get("/help", (req, res) => {
   });
 });
 
-app.get("/test", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
-});
-
 app.get("/weather", (req, res) => {
   if (!req.query.location) {
     return res.send({
@@ -48,7 +44,11 @@ app.get("/weather", (req, res) => {
   if (req.query.location == undefined) {
     console.log("Please provide a country");
   } else {
-    geocode(req.query.location, (error, { lat, lon, loca } = {}) => {
+    geocode(req.query.location, (error, {
+      lat,
+      lon,
+      loca
+    } = {}) => {
       if (error == "Error") {
         res.send({
           error: "API error",
@@ -64,7 +64,10 @@ app.get("/weather", (req, res) => {
       } else {
         console.log(lat, lon, loca);
       }
-      forecast(lat, lon, (error, { cloud, type } = {}) => {
+      forecast(lat, lon, (error, {
+        cloud,
+        type
+      } = {}) => {
         if (error == "Country") {
           res.send({
             error: "Country invalid",
