@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 const path = require("path");
-const viewsPath = path.join(__dirname, "../webserver/templates/views");
+const viewsPath = path.join(__dirname, "templates/views");
 const partialsPath = path.join(__dirname, "../webserver/templates/partials");
 const forecast = require("./source/forecast/forecast");
 const geocode = require("./source/utils/geocode");
@@ -12,6 +12,8 @@ app.set("view engine", "hbs");
 app.set("views", viewsPath);
 hbs.registerPartials(partialsPath);
 app.use(express.static("public"));
+
+console.log(path.join(__dirname, "templates/views"))
 
 app.get("/", (req, res) => {
   res.render("index", {
